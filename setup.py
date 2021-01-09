@@ -10,4 +10,5 @@ setup(name='badgegen',
       url='https://github.com/alexhagen/badgegen',
       long_description=open('README.md').read(),
       packages=['badgegen'],
+      install_requires=['svgwrite']
      )
