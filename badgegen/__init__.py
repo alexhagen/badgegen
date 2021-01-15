@@ -1,27 +1,36 @@
+"""BadgeGeneration Module."""
 import argparse
 import svgwrite
 from svgwrite.shapes import Line
 
 class BadgeGenerator:
+    """Badge Generator."""
     def __init__(self):
+        """Initialize the badge generator and write out the outline."""
         dwg = svgwrite.Drawing('badge.svg', profile='tiny')
         path = svgwrite.path.Path()
-        path.push('M 0,45 C 0,47.5 2.5,50 5,50')
-        path.push('L 5,50 150,50')
-        path.push('L 150,50 150,0')
-        path.push('L 150,0 5,0')
-        path.push('C 2.5,0 0,2.5 0,5')
+        w = 75.0
+        r = 5.0
+        h = 25.0
+        path.push(f'M 0.0,{h - r} C 0.0,{h - r/2} {r/2.0},{h} {r},{h}')
+        path.push(f'L {r},{h} {w},{h}')
+        path.push(f'L {w},{h} {w},0.0')
+        path.push(f'L {w},0 {r},0')
+        path.push(f'C {r/2.0},0 0,{r/2.0} 0,{r}')
         path.push('Z')
         dwg.add(path)
-        path = svgwrite.path.Path()
-        path.push('M 295,50 C 297.5,50 300,47.5 300,45')
-        path.push('L 300,45 300,5')
-        path.push('C 300,2.5 297.5,0 295,0')
-        path.push('L 295,0 150,0')
-        path.push('L 150,0 150,50')
+        path = svgwrite.path.Path(fill='red')
+        lw = w
+        rw = 150.0
+        path.push(f'M {lw + rw - r},{h} C {lw + rw - r/2.0},{h} ' +
+                  f'{lw + rw},{h - r/2.0} {lw + rw},{h - r}')
+        path.push(f'L {lw + rw},{h - r} {lw + rw},{r}')
+        path.push(f'C {lw + rw},{r/2.0} {lw + rw - r/2.0},0 {lw + rw - r},0')
+        path.push(f'L {lw + rw - r},0 {lw},0')
+        path.push(f'L {lw},0 {lw},{h}')
         path.push('Z')
         dwg.add(path)
-        dwg.add(dwg.text('Test', insert=(0, 0.2), fill='red'))
+        dwg.add(dwg.text('Test', insert=(lw/2.0, hw/2.0), fill='red'))
         dwg.save()
 
     def __call__(self):
