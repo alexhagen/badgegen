@@ -5,16 +5,17 @@ from svgwrite.shapes import Line
 
 class BadgeGenerator:
     """Badge Generator."""
-    def __init__(self):
+    def __init__(self, left_width=150, right_width=150, left_text='test',
+                 right_text='100%', height=50, radius=5):
         """Initialize the badge generator and write out the outline."""
         self.dwg = svgwrite.Drawing('badge.svg', profile='tiny')
-        self.left_rectangle()
-        self.right_rectangle()
-        self.dwg.add(self.dwg.text('Test', insert=(75.0/2.0, 25.0/2.0), fill='red'))
-        self.dwg.save()
-
+        self.left_rectangle(left_width, height, radius)
+        self.right_rectangle(right_width, height, radius, left_width)
+        self.dwg.add(self.dwg.text(left_text, insert=(left_width/2.0, height/2.0), fill='red'))
+        self.dwg.add(self.dwg.text(right_text, insert=(left_width + right_width/2.0, height/2.0), fill='red'))
+        
     def __call__(self):
-        pass
+        self.dwg.save()
 
     def left_rectangle(self, width=75.0, height=25.0, radius=5.0):
         path = svgwrite.path.Path()
@@ -37,5 +38,22 @@ class BadgeGenerator:
         path.push('Z')
         self.dwg.add(path)
 
+def _get_argparser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--left-width', default=150, nargs='?',
+                        help='Width of the left cell, ``None`` if fit to text')
+    parser.add_argument('--right-width', default=150, nargs='?',
+                        help='Width of the left cell, ``None`` if fit to text')
+    parser.add_argument('--left-text', default='test', nargs='?',
+                        help='Text for the left cell. Can be python format string')
+    parser.add_argument('--right-text', default='100%', nargs='?',
+                        help='Text for the right cell.  Can be python format string')
+    return parser
+
+def _run_cli():
+    args = _get_argparser().parse_args()
+    badge_generator = BadgeGenerator(**vars(args))
+    badge_generator()
+
 if __name__ == "__main__":
-    badge_generator = BadgeGenerator()
+    _run_cli()
