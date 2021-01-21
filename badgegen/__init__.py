@@ -8,12 +8,20 @@ def points_to_pixels(pts):
 
 class BadgeGenerator:
     """Badge Generator."""
-    def __init__(self, left_width=150, right_width=150, left_text='test',
-                 right_text='100%', height=50, radius=5, left_stroke='#000000',
+    def __init__(self, left_width=None, right_width=None, left_text='test',
+                 right_text='100%', height=None, radius=5, left_stroke='#000000',
                  left_fill='#000000', left_text_color='#FFFFFF',
-                 right_stroke='#000000', right_fill='#FFFFFF', right_text_color='#000000'):
+                 right_stroke='#000000', right_fill='#FFFFFF',
+                 right_text_color='#000000',
+                 font_size=16):
         """Initialize the badge generator and write out the outline."""
         self.dwg = svgwrite.Drawing('badge.svg', profile='tiny')
+        if left_width is None:
+            left_width = len(left_text) * 3/4 * font_size
+        if right_width is None:
+            right_width = len(right_text) * 3/4 * font_size
+        if height is None:
+            height = font_size * 1.5
         self.left_rectangle(left_width, height, radius, left_stroke, left_fill)
         self.right_rectangle(right_width, height, radius, left_width, right_stroke, right_fill)
         font_size = 16
@@ -48,9 +56,9 @@ class BadgeGenerator:
 
 def _get_argparser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--left-width', default=150, nargs='?',
+    parser.add_argument('--left-width', default=None, nargs='?',
                         help='Width of the left cell, ``None`` if fit to text')
-    parser.add_argument('--right-width', default=150, nargs='?',
+    parser.add_argument('--right-width', default=None, nargs='?',
                         help='Width of the left cell, ``None`` if fit to text')
     parser.add_argument('--left-text', default='test', nargs='?',
                         help='Text for the left cell. Can be python format string')
