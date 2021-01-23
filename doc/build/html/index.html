@@ -38,7 +38,12 @@
 <div class="section" id="cli">
 <h2>CLI<a class="headerlink" href="#cli" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">badgegen</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">left</span><span class="o">-</span><span class="n">width</span> <span class="p">[</span><span class="n">LEFT_WIDTH</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">right</span><span class="o">-</span><span class="n">width</span> <span class="p">[</span><span class="n">RIGHT_WIDTH</span><span class="p">]]</span>
-                <span class="p">[</span><span class="o">--</span><span class="n">left</span><span class="o">-</span><span class="n">text</span> <span class="p">[</span><span class="n">LEFT_TEXT</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">right</span><span class="o">-</span><span class="n">text</span> <span class="p">[</span><span class="n">RIGHT_TEXT</span><span class="p">]]</span>
+                <span class="p">[</span><span class="o">--</span><span class="n">left</span><span class="o">-</span><span class="n">text</span> <span class="p">[</span><span class="n">LEFT_TEXT</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">left</span><span class="o">-</span><span class="n">stroke</span> <span class="p">[</span><span class="n">LEFT_STROKE</span><span class="p">]]</span>
+                <span class="p">[</span><span class="o">--</span><span class="n">left</span><span class="o">-</span><span class="n">fill</span> <span class="p">[</span><span class="n">LEFT_FILL</span><span class="p">]]</span>
+                <span class="p">[</span><span class="o">--</span><span class="n">left</span><span class="o">-</span><span class="n">text</span><span class="o">-</span><span class="n">color</span> <span class="p">[</span><span class="n">LEFT_TEXT_COLOR</span><span class="p">]]</span>
+                <span class="p">[</span><span class="o">--</span><span class="n">right</span><span class="o">-</span><span class="n">text</span> <span class="p">[</span><span class="n">RIGHT_TEXT</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">right</span><span class="o">-</span><span class="n">stroke</span> <span class="p">[</span><span class="n">RIGHT_STROKE</span><span class="p">]]</span>
+                <span class="p">[</span><span class="o">--</span><span class="n">right</span><span class="o">-</span><span class="n">fill</span> <span class="p">[</span><span class="n">RIGHT_FILL</span><span class="p">]]</span>
+                <span class="p">[</span><span class="o">--</span><span class="n">right</span><span class="o">-</span><span class="n">text</span><span class="o">-</span><span class="n">color</span> <span class="p">[</span><span class="n">RIGHT_TEXT_COLOR</span><span class="p">]]</span>
 </pre></div>
 </div>
 <div class="section" id="Named Arguments">
@@ -46,19 +51,41 @@
 <dl class="option-list">
 <dt><kbd>--left-width</kbd></dt>
 <dd><p>Width of the left cell, <code class="docutils literal notranslate"><span class="pre">None</span></code> if fit to text</p>
-<p>Default: 150</p>
 </dd>
 <dt><kbd>--right-width</kbd></dt>
 <dd><p>Width of the left cell, <code class="docutils literal notranslate"><span class="pre">None</span></code> if fit to text</p>
-<p>Default: 150</p>
 </dd>
 <dt><kbd>--left-text</kbd></dt>
 <dd><p>Text for the left cell. Can be python format string</p>
 <p>Default: “test”</p>
 </dd>
+<dt><kbd>--left-stroke</kbd></dt>
+<dd><p>Outline color for left cell.</p>
+<p>Default: “#000000”</p>
+</dd>
+<dt><kbd>--left-fill</kbd></dt>
+<dd><p>Fill color for left cell.</p>
+<p>Default: “#000000”</p>
+</dd>
+<dt><kbd>--left-text-color</kbd></dt>
+<dd><p>Text color for left cell.</p>
+<p>Default: “#FFFFFF”</p>
+</dd>
 <dt><kbd>--right-text</kbd></dt>
 <dd><p>Text for the right cell.  Can be python format string</p>
 <p>Default: “100%”</p>
+</dd>
+<dt><kbd>--right-stroke</kbd></dt>
+<dd><p>Outline color for right cell.</p>
+<p>Default: “#000000”</p>
+</dd>
+<dt><kbd>--right-fill</kbd></dt>
+<dd><p>Fill color for right cell.</p>
+<p>Default: “#FFFFFF”</p>
+</dd>
+<dt><kbd>--right-text-color</kbd></dt>
+<dd><p>Text color for right cell.</p>
+<p>Default: “#000000”</p>
 </dd>
 </dl>
 </div>
@@ -68,18 +95,58 @@
 <p>BadgeGeneration Module.</p>
 <dl class="py class">
 <dt id="badgegen.BadgeGenerator">
-<em class="property">class </em><code class="sig-prename descclassname">badgegen.</code><code class="sig-name descname">BadgeGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">left_width</span><span class="o">=</span><span class="default_value">150</span></em>, <em class="sig-param"><span class="n">right_width</span><span class="o">=</span><span class="default_value">150</span></em>, <em class="sig-param"><span class="n">left_text</span><span class="o">=</span><span class="default_value">'test'</span></em>, <em class="sig-param"><span class="n">right_text</span><span class="o">=</span><span class="default_value">'100%'</span></em>, <em class="sig-param"><span class="n">height</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#badgegen.BadgeGenerator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">badgegen.</code><code class="sig-name descname">BadgeGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">left_width</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">right_width</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">left_text</span><span class="o">=</span><span class="default_value">'test'</span></em>, <em class="sig-param"><span class="n">right_text</span><span class="o">=</span><span class="default_value">'100%'</span></em>, <em class="sig-param"><span class="n">height</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">left_stroke</span><span class="o">=</span><span class="default_value">'#000000'</span></em>, <em class="sig-param"><span class="n">left_fill</span><span class="o">=</span><span class="default_value">'#000000'</span></em>, <em class="sig-param"><span class="n">left_text_color</span><span class="o">=</span><span class="default_value">'#FFFFFF'</span></em>, <em class="sig-param"><span class="n">right_stroke</span><span class="o">=</span><span class="default_value">'#000000'</span></em>, <em class="sig-param"><span class="n">right_fill</span><span class="o">=</span><span class="default_value">'#FFFFFF'</span></em>, <em class="sig-param"><span class="n">right_text_color</span><span class="o">=</span><span class="default_value">'#000000'</span></em>, <em class="sig-param"><span class="n">font_size</span><span class="o">=</span><span class="default_value">16</span></em><span class="sig-paren">)</span><a class="headerlink" href="#badgegen.BadgeGenerator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Badge Generator.</p>
 <dl class="py method">
 <dt id="badgegen.BadgeGenerator.left_rectangle">
-<code class="sig-name descname">left_rectangle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">75.0</span></em>, <em class="sig-param"><span class="n">height</span><span class="o">=</span><span class="default_value">25.0</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">5.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#badgegen.BadgeGenerator.left_rectangle" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">left_rectangle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">75.0</span></em>, <em class="sig-param"><span class="n">height</span><span class="o">=</span><span class="default_value">25.0</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">5.0</span></em>, <em class="sig-param"><span class="n">stroke</span><span class="o">=</span><span class="default_value">'#000000'</span></em>, <em class="sig-param"><span class="n">fill</span><span class="o">=</span><span class="default_value">'#000000'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#badgegen.BadgeGenerator.left_rectangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Creates a rectangle with rounded left corners.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – width of the rectangle in pts. Default <code class="docutils literal notranslate"><span class="pre">75.0</span></code></p></li>
+<li><p><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – height of the rectangle in pts. Default <code class="docutils literal notranslate"><span class="pre">25.0</span></code></p></li>
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – radius of rounded corners in pts. Default <code class="docutils literal notranslate"><span class="pre">5.0</span></code></p></li>
+<li><p><strong>stroke</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color of the rectangle outline. Default <code class="docutils literal notranslate"><span class="pre">#000000</span></code></p></li>
+<li><p><strong>fill</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color of the rectangle fill. Default <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="badgegen.BadgeGenerator.right_rectangle">
-<code class="sig-name descname">right_rectangle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">150.0</span></em>, <em class="sig-param"><span class="n">height</span><span class="o">=</span><span class="default_value">25.0</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">5.0</span></em>, <em class="sig-param"><span class="n">corner</span><span class="o">=</span><span class="default_value">75.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#badgegen.BadgeGenerator.right_rectangle" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">right_rectangle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">150.0</span></em>, <em class="sig-param"><span class="n">height</span><span class="o">=</span><span class="default_value">25.0</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">5.0</span></em>, <em class="sig-param"><span class="n">corner</span><span class="o">=</span><span class="default_value">75.0</span></em>, <em class="sig-param"><span class="n">stroke</span><span class="o">=</span><span class="default_value">'#000000'</span></em>, <em class="sig-param"><span class="n">fill</span><span class="o">=</span><span class="default_value">'#000000'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#badgegen.BadgeGenerator.right_rectangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Creates a rectangle with rounded right corners.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – width of the rectangle in pts. Default <code class="docutils literal notranslate"><span class="pre">150.0</span></code></p></li>
+<li><p><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – height of the rectangle in pts. Default <code class="docutils literal notranslate"><span class="pre">25.0</span></code></p></li>
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – radius of rounded corners in pts. Default <code class="docutils literal notranslate"><span class="pre">5.0</span></code></p></li>
+<li><p><strong>corner</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – x-coordinate of the left corner in pts. Default
+<code class="docutils literal notranslate"><span class="pre">75.0</span></code></p></li>
+<li><p><strong>stroke</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color of the rectangle outline. Default <code class="docutils literal notranslate"><span class="pre">#000000</span></code></p></li>
+<li><p><strong>fill</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – color of the rectangle fill. Default <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt id="badgegen.points_to_pixels">
+<code class="sig-prename descclassname">badgegen.</code><code class="sig-name descname">points_to_pixels</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pts</span></em><span class="sig-paren">)</span><a class="headerlink" href="#badgegen.points_to_pixels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Approximate the number of pixels if given pts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – the measure in points to convert</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of pixels</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
