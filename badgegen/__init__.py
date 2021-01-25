@@ -19,7 +19,33 @@ class BadgeGenerator:
                  right_stroke='#000000', right_fill='#FFFFFF',
                  right_text_color='#000000',
                  font_size=16):
-        """Initialize the badge generator and write out the outline."""
+        """Initialize the badge generator and write out the outline.
+        
+        :param float left_width: The width in pts of the left cell of the
+            rectangle. If ``None``, then estimates the width of the left text
+            and pads.
+        :param float right_width: The width in pts of the right cell of the
+            rectangle. If ``None``, then estimates the width of the right text
+            and pads.
+        :param str left_text: Text in the left cell. Default ``'test'``.
+        :param str right_text: Text in the right cell. Default ``'100%'``.
+        :param float height: The height in pts of both cells. If ``None``, then
+            estimates the width of the text and pads.
+        :param float radius: The rounded corner radius in pts. Default ``5``.
+        :param str left_stroke: The color of the outline of the left cell.
+            Default ``'#000000'``.
+        :param str left_fill: The color of the fill of the left cell. Default
+            ``'#000000'``.
+        :param str left_text_color: The color of the left text. Default
+            ``'#FFFFFF'``.
+        :param str right_stroke: The color of the outline of the right cell.
+            Default ``'#000000'``.
+        :param str right_fill: The color of the fill of the right cell. Default
+            ``'#FFFFFF'``.
+        :param str right_text_color: The color of the right text. Default
+            ``'#000000'``.
+        :param int font_size: The size of the font in pts. Default ``16``.
+        """
         self.dwg = svgwrite.Drawing('badge.svg', profile='tiny')
         if left_width is None:
             left_width = len(left_text) * 3/4 * font_size
