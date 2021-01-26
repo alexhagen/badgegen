@@ -3,6 +3,11 @@ import argparse
 import svgwrite
 from svgwrite.shapes import Line
 
+# TODO[ahagen]: Finish linting
+# TODO[ahagen]: Full test coverage
+# TODO[ahagen]: Write readme
+# TODO[ahagen]: Use badgegen to create badges for readme (oo fancy)
+
 def points_to_pixels(pts):
     """Approximate the number of pixels if given pts.
 

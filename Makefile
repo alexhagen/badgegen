@@ -13,4 +13,8 @@ todo: $(PYFILES)
 lint: FORCE
 	pylint $(PYFILES) | tee todos.md
 
+deploy: FORCE
+	python setup.py bdist_wheel
+	twine upload dist/*
+
 FORCE:

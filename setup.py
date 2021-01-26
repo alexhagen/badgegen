@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 
 setup(name='badgegen',
-      version=0.1,
+      version=0.2,
       description='CI/CD Badge Generator',
       author='Alex Hagen',
       author_email='alexhagen6@gmail.com',
