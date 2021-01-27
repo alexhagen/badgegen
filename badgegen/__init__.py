@@ -23,7 +23,7 @@ class BadgeGenerator:
                  left_fill='#000000', left_text_color='#FFFFFF',
                  right_stroke='#000000', right_fill='#FFFFFF',
                  right_text_color='#000000',
-                 font_size=16):
+                 font_size=16, filename='badge.svg'):
         """Initialize the badge generator and write out the outline.
         
         :param float left_width: The width in pts of the left cell of the
@@ -50,8 +50,10 @@ class BadgeGenerator:
         :param str right_text_color: The color of the right text. Default
             ``'#000000'``.
         :param int font_size: The size of the font in pts. Default ``16``.
+        :param str filename: The svg filename for saving. Default
+            ``'badge.svg'``.
         """
-        self.dwg = svgwrite.Drawing('badge.svg', profile='tiny')
+        self.dwg = svgwrite.Drawing(filename, profile='tiny')
         if left_width is None:
             left_width = len(left_text) * 3/4 * font_size
         if right_width is None:
@@ -141,6 +143,8 @@ def _get_argparser():
                         help='Fill color for right cell.')
     parser.add_argument('--right-text-color', default='#000000', nargs='?',
                         help='Text color for right cell.')
+    parser.add_argument('--filename', default='badge.svg', nargs="?",
+                        help='Filename for the badge.')
     return parser
 
 def _run_cli():
