@@ -53,13 +53,14 @@ class BadgeGenerator:
         :param str filename: The svg filename for saving. Default
             ``'badge.svg'``.
         """
-        self.dwg = svgwrite.Drawing(filename, profile='tiny')
         if left_width is None:
             left_width = len(left_text) * 3/4 * font_size
         if right_width is None:
             right_width = len(right_text) * 3/4 * font_size
         if height is None:
             height = font_size * 1.5
+        self.dwg = svgwrite.Drawing(filename, profile='tiny', size=(left_width+right_width, height))
+        
         self.left_rectangle(left_width, height, radius, left_stroke, left_fill)
         self.right_rectangle(right_width, height, radius, left_width,
                              right_stroke, right_fill)
